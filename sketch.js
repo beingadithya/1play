@@ -63,7 +63,7 @@ function preload(){
   plasticBags_img = loadImage('images/plasticbottle1.png');
   plasticBottles_img = loadImage('images/plasticbottle.png'); 
 
-  playText_img = loadImage('images/PLAYTEXT.png');
+ // playText_img = loadImage('images/PLAYTEXT.png');
   BookInstructionButton_img = loadImage('images/BookInstructionsText.png');
   introBg_img = loadImage('images/INTROBG.png');
 
@@ -72,7 +72,7 @@ function preload(){
   marineNinja_img = loadImage('images/MARINENINJALOGO.png');
 
   howToPlay_img = loadImage('images/HowToPlayLevel1Final.png');
-  instructions_img = loadImage('images/instructions (2).png');
+  instructions_img = loadImage('images/InstructionsTest1.png');
 
   diver_img = loadAnimation('images/diverImg1.png','images/diverImg2.png','images/DiverImg3.png','images/DiverImg4.png','images/DiverImg5.png','images/DiverImg6.png','images/DiverImg7.png','images/DiverImg8.png')
   staticDiver_img = loadImage('images/DiverImg4.png');
@@ -96,7 +96,7 @@ function preload(){
 
   angelFish_img = loadImage('images/angelfish.png');
 
-  winText_img = loadImage('images/Level1Win.png');
+  winText_img = loadImage('images/WinText.png');
   loseText_img = loadImage('images/LoseFinal.png');
 
   tempbg = loadImage('images/haha.jpg');
@@ -115,6 +115,10 @@ function preload(){
 function setup() {
 
   
+   
+  //if(mousePressedOver(Level2Btn)){
+   // greet();
+  //}  
   //createCanvas(1200,310);  
  createCanvas(windowWidth, windowHeight);
 /*
@@ -175,24 +179,23 @@ function setup() {
   //marineNinja = createSprite(950,370);
   marineNinja = createSprite(0.5*windowWidth,0.4*windowHeight);
   marineNinja.addImage(marineNinja_img);
-  marineNinja.scale = 0.75;
+  marineNinja.scale = 0.5;
   marineNinja.visible = false;
 
-  howToPlay = createSprite(windowWidth/2,100);
+  howToPlay = createSprite(windowWidth/2, 0.1*windowHeight);
   howToPlay.addImage(howToPlay_img);
   howToPlay.scale = 0.85;
   howToPlay.visible = false;
 
   //instructions = createSprite(1400,350);
-  instructions = createSprite(windowWidth/2, 500);
+  instructions = createSprite(windowWidth/2, 0.5*windowHeight);
   instructions.addImage(instructions_img);
   instructions.scale = 1.25;
   instructions.visible = false;
 
-  //playButton = createSprite(700,350);
-  playButton = createSprite(0.55*windowWidth,350);
+  playButton = createSprite(0.2*windowWidth, windowHeight/2);//else x = 200;
   playButton.addImage(playButton_img);
-  playButton.scale = 0.5;
+  playButton.scale = 0.75;
   playButton.visible = false;   
   
  // BookInstructionButton = createSprite(1400,350);
@@ -202,10 +205,10 @@ function setup() {
   BookInstructionButton.visible = false;
   
   //playText = createSprite(660,415);
-  playText = createSprite(0.33*windowWidth,0.42*windowHeight);
-  playText.addImage(playText_img);
-  playText.scale = 0.5;
-  playText.visible = false;
+ // playText = createSprite(0.33*windowWidth,0.42*windowHeight);
+  //playText.addImage(playText_img);
+  //playText.scale = 0.5;
+  //playText.visible = false;
 
   //score = createSprite(150,100);
   score = createSprite(0.09*windowWidth,0.11*windowHeight);
@@ -215,28 +218,32 @@ function setup() {
 
   winText = createSprite(windowWidth/2, windowHeight/2);
   winText.addImage(winText_img);
-  winText.scale = 0.55;
+  winText.scale = 1.20;
   winText.visible = false;
    
-  loseText = createSprite(975, 400);
+  loseText = createSprite(windowWidth/2,windowHeight/2);//975, 400
   loseText.addImage(loseText_img);
   loseText.scale = 1.5;
   loseText.visible = false;
 
  // marineNinjaLogo = createSprite(0.925*windowWidth, windowHeight/1.15);
- marineNinjaLogo = createSprite(112,115);
+  marineNinjaLogo = createSprite(0.07*windowWidth,0.115*windowHeight);
   marineNinjaLogo.addImage(marineNinjaLogo_img);
   marineNinjaLogo.scale = 0.17;
 
   Level2Btn = createSprite(1403,344);
+ //Level2Btn = createSprite(windowWidth*0.75, windowHeight/2);
   Level2Btn.addImage(Level2Btn_img);
   Level2Btn.visible = false;
+  Level2Btn.onMousePressed = function() {
+   // console.log("*****************HERE");
+  greet();
+    };
 
   playAgain = createSprite(1545,438);
   playAgain.addImage(playAgain_img);
   playAgain.scale = 0.75;
   playAgain.visible = false;
-
 
   gameSound.loop();
   gameSound.play();
@@ -250,7 +257,7 @@ function draw(){
   background(tempbg);
 
   if(gameState === "play"){
-   
+
   marineNinjaLogo.x = 0.915*windowWidth;
   marineNinjaLogo.y = windowHeight/1.25;
  
@@ -265,7 +272,7 @@ function draw(){
    playButton.visible = false;
    BookInstructionButton.visible = false;
 
-   playText.visible = false;
+   //playText.visible = false;
    score.visible = true;
    instructions.visible = false;
 
@@ -342,9 +349,6 @@ function draw(){
    }//for loop ends here and bombing the plastics too
    
    //gameStates start
-
-  
-
    if(gameState === "play"){
     
     background(bg);
@@ -364,7 +368,7 @@ function draw(){
    } 
    
    //win
-   if(scoreText === 100){
+   if(scoreText === 5){
     winText.visible = true;
     gameState = "WIN";
    }
@@ -374,6 +378,8 @@ if(gameState === "WIN"){
    // button.position(890,503);
    // button.mousePressed(greet);  
    Level2Btn.visible = true;
+
+   
   
   plasticWasteGroup.destroyEach();
   fishGroup.destroyEach();
@@ -384,10 +390,12 @@ if(gameState === "WIN"){
   life3.visible = false;
   life4.visible = false;
   life5.visible = false;
+ play = true;
+ playSound();
 
-  winSound.play();
+ //winSound.play();
  
-  noLoop();
+  //noLoop();
   //gameSound.pause();
 
 }
@@ -397,6 +405,8 @@ if(gameState === "END"){
   background(tempbg);
   loseText.visible = true;
   playAgain.visible = true;
+  marineNinjaLogo.x = 112;
+  marineNinjaLogo.y = 115;
   if(mousePressedOver(playAgain)){
    retry();
   }
@@ -420,9 +430,11 @@ if(gameState === "END"){
 
   score.visible = false;
 
-  loseSound.play();
+  play = true;
+  playSoundWhenLost();
 
-  noLoop();
+
+  //noLoop();
   
 }
    fill("white");
@@ -577,11 +589,11 @@ var fish = createSprite(random(1830,1700),random(100,450));
 }
 
 function greet() {
-  window.location.href = 'https://theinevitable007.github.io/level2/';
+  window.location.href = 'https://theinevitable007.github.io/2/';
 }
 
 function redirect() {
-  window.location.href = 'https://theinevitable007.github.io/level2/';
+  window.location.href = 'https://theinevitable007.github.io/PlayMn/';
 }
 
 
