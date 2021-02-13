@@ -368,7 +368,7 @@ function draw(){
    } 
    
    //win
-   if(scoreText === 5){
+   if(scoreText === 100){
     winText.visible = true;
     gameState = "WIN";
    }
@@ -377,9 +377,7 @@ if(gameState === "WIN"){
  // button = createButton('LEVEL 2');
    // button.position(890,503);
    // button.mousePressed(greet);  
-   Level2Btn.visible = true;
-
-   
+   Level2Btn.visible = true; 
   
   plasticWasteGroup.destroyEach();
   fishGroup.destroyEach();
@@ -407,8 +405,12 @@ if(gameState === "END"){
   playAgain.visible = true;
   marineNinjaLogo.x = 112;
   marineNinjaLogo.y = 115;
+
+  play = true;
+  playSoundWhenLost();
+
   if(mousePressedOver(playAgain)){
-   retry();
+   redirect();
   }
 
   
@@ -430,15 +432,13 @@ if(gameState === "END"){
 
   score.visible = false;
 
-  play = true;
-  playSoundWhenLost();
-
+ 
 
   //noLoop();
   
 }
-   fill("white");
-    text(mouseX + ":" + mouseY, 600,150);
+  // fill("white");
+   // text(mouseX + ":" + mouseY, 600,150);
     drawSprites();
 
     
@@ -589,11 +589,11 @@ var fish = createSprite(random(1830,1700),random(100,450));
 }
 
 function greet() {
-  window.location.href = 'https://theinevitable007.github.io/2/';
+  window.location.href = 'https://beingadithya.github.io/2/';
 }
 
 function redirect() {
-  window.location.href = 'https://theinevitable007.github.io/PlayMn/';
+  window.location.href = 'https://theinevitable007.github.io/1play/';
 }
 
 
